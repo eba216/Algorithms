@@ -1,4 +1,5 @@
 from flask import Flask, render_template, url_for, request
+from Strings import Strings
 
 app = Flask(__name__)
 
@@ -9,13 +10,14 @@ def index():
     if request.method == 'GET':
         string = request.args.get("string","")
         alg = request.args.get("alg", "")
+        print(string)
+        print(alg)
+        Str = Strings(string=string, alg=alg)
 
-
-    if alg == "reverse":
-
-        return string[::-1]
+        return Str.do_alg()
 
     return "Could not process"
+
 
 if __name__ == '__main__':
     app.run(debug=True)
